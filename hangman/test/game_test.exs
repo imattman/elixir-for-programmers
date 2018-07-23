@@ -11,4 +11,18 @@ defmodule GameTest do
     assert length(game.letters) > 0
   end
 
+  test "state isn't changed for :won game" do
+    game = Game.new_game() |> Map.put(:game_state, :won)
+    #{ new_game, _ } = Game.make_move(game, "x")
+    # assert new_game == game
+
+    # pin to verify same game is returned and matched
+    assert { ^game, _ } = Game.make_move(game, "x")
+  end
+
+  test "state isn't changed for :lost game" do
+    game = Game.new_game() |> Map.put(:game_state, :lost)
+    assert { ^game, _ } = Game.make_move(game, "x")
+  end
+
 end
