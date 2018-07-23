@@ -1,5 +1,4 @@
-defmodule Examples do
-
+defmodule Sandbox do
 end
 
 defmodule Sequence do
