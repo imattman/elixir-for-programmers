@@ -1,3 +1,15 @@
+
+# Created by https://www.gitignore.io/api/code,elixir
+# Edit at https://www.gitignore.io/?templates=code,elixir
+
+### Code ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### Elixir ###
 /_build
 /cover
 /deps
@@ -7,3 +19,8 @@ erl_crash.dump
 *.ez
 *.beam
 /config/*.secret.exs
+.elixir_ls/
+
+### Elixir Patch ###
+
+# End of https://www.gitignore.io/api/code,elixir
