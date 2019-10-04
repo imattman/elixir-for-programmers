@@ -5,7 +5,8 @@ defmodule Dictionary do
   end
 
   def read_words() do
-    "assets/words.txt"
+    "../assets/words.txt"
+    |> Path.expand(__DIR__)
     |> File.read!()
     |> String.split(~r/\n/)
   end
