@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# fail early
+set -euo pipefail
+
+DOCKER_IMAGE="mattman/elixir-iex"
+DOCKER_CONTAINER="iex"
+
+build() {
+  docker build .  -t "$DOCKER_IMAGE"
+}
+
+run() {
+  docker run -it --rm \
+    --name "$DOCKER_CONTAINER" \
+    -v $PWD:/app \
+    "$DOCKER_IMAGE"
+}
+
+usage() {
+  cat<<EOU
+  Usage $(basename $0): [options] {build|run}
+
+  Options:
+    -h  Display this help screen
+
+EOU
+
+  exit 1
+}
+
+
+while getopts "h" opt; do
+  case "$opt" in 
+    h)
+      usage
+      ;;
+    *)
+      usage
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+
+if [[ $# -eq 0 ]]; then
+  run
+else
+  for cmd in "$@"; do
+    if [[ "$cmd" == "help" ]]; then
+      usage
+    else
+      "$cmd"
+    fi
+  done
+fi
+
+
+
+
