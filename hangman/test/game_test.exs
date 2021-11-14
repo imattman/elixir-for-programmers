@@ -84,4 +84,13 @@ defmodule GameTest do
     assert game.game_state == :lost
     assert game.turns_left == 0
   end
+
+  test "guessed letters are sorted" do
+    game = Game.new_game("wombat")
+    game = Game.make_move(game, "z")
+    game = Game.make_move(game, "e")
+    game = Game.make_move(game, "a")
+    tally = Game.tally(game)
+    assert tally.letters_used == ["a", "e", "z"]
+  end
 end

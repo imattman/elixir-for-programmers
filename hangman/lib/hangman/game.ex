@@ -30,11 +30,18 @@ defmodule Hangman.Game do
     %{
       game_state: game.game_state,
       turns_left: game.turns_left,
-      letters: game.letters |> reveal_guessed(game.used)
+      letters: game.letters |> reveal_guessed(game.used),
+      letters_used: sort_letters(game.used)
     }
   end
 
   ################ Private ################
+
+  defp sort_letters(used) do
+    used
+    |> Enum.sort()
+    |> Enum.to_list()
+  end
 
   defp accept_move(game, _guess, _already_guessed = true) do
     Map.put(game, :game_state, :already_used)
