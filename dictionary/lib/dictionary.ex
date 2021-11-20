@@ -1,12 +1,12 @@
 defmodule Dictionary do
-  def random_word do
-    word_list()
-    |> Enum.random()
-  end
+  # build word list at compile time
+  # stored in module attribute
+  @word_list "assets/words.txt"
+             |> File.read!()
+             |> String.split(~r/\n/, trim: true)
 
-  def word_list do
-    "assets/words.txt"
-    |> File.read!()
-    |> String.split(~r/\n/)
+  def random_word() do
+    @word_list
+    |> Enum.random()
   end
 end
