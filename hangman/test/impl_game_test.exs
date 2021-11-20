@@ -24,4 +24,13 @@ defmodule HangmanImplGameTest do
     # assert game.letters |> Enum.all?(fn c -> c =~ ~r/^[a-z]$/ end)
     assert game.letters |> Enum.all?(&(&1 =~ ~r/^[a-z]$/))
   end
+
+  test "state doesn't change if game is won or lost" do
+    for state <- [:won, :lost] do
+      game = Game.new_game()
+      game = Map.put(game, :game_state, state)
+      {new_game, _tally} = Game.make_move(game, "x")
+      assert new_game == game
+    end
+  end
 end
