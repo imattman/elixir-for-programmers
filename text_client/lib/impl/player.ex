@@ -20,7 +20,7 @@ defmodule TextClient.Impl.Player do
 
   def interact({_game, tally = %{game_state: :lost}}) do
     IO.puts("Sorry, you lost. :-(")
-    IO.puts("The word was #{tally.letters |> Enum.join()}")
+    IO.puts(~s/The word was "#{tally.letters |> Enum.join()}"/)
   end
 
   def interact({game, tally}) do
