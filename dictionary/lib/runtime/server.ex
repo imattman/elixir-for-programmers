@@ -12,10 +12,10 @@ defmodule Dictionary.Runtime.Server do
   end
 
   def random_word() do
-    if :rand.uniform() < 0.333 do
-      # periodically crash the Agent to demonstrate supervision
-      Agent.get(@me, fn _ -> exit(:kaboom) end)
-    end
+    # if :rand.uniform() < 0.333 do
+    #   # periodically crash the Agent to demonstrate supervision
+    #   Agent.get(@me, fn _ -> exit(:kaboom) end)
+    # end
 
     Agent.get(@me, &WordList.random_word/1)
   end
