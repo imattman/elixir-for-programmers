@@ -13,6 +13,8 @@ defmodule TextClient.MixProject do
 
   def application do
     [
+      # include (load) the hangman code but doesn't start application
+      included_applications: [:hangman],
       extra_applications: [:logger]
     ]
   end
